@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "546410206927",
+    "project_id": "bright-ways",
+    "storage_bucket": "bright-ways.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546410206927:android:f5eea1133cc30b893cc9ba",
+        "android_client_info": {
+          "package_name": "com.example.brightways"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546410206927-7qrouo7micie9583oqaq41l5kocpm6vo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx1isnP9LTtdgVAbD77yizxr8q1Z6u014"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546410206927-7qrouo7micie9583oqaq41l5kocpm6vo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
