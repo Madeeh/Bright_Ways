@@ -1,60 +1,64 @@
 package com.example.brightways.UI;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.brightways.Models.Products;
 import com.example.brightways.R;
 import com.example.brightways.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class PracticeWork extends AppCompatActivity {
+public class SearchProductsActivityKids extends AppCompatActivity {
 
-    DatabaseReference ProductsRef;
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
+    Button SearchBtn;
+    EditText inputText;
+    RecyclerView searchList;
+    String SearchInput;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_practice_work);
+        setContentView(R.layout.activity_search_products_kids);
 
 
-        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        inputText = findViewById(R.id.search_product_name_kids);
+        SearchBtn = findViewById(R.id.search_btn_kids);
+        searchList = findViewById(R.id.search_list_kids);
+        searchList.setLayoutManager(new LinearLayoutManager(SearchProductsActivityKids.this));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            Intent intent = new Intent(PracticeWork.this, CartActivity.class);
-            startActivity(intent);
+
+        SearchBtn.setOnClickListener(view -> {
+            SearchInput = inputText.getText().toString();
+
+            onStart();
         });
-
-
-        recyclerView = findViewById(R.id.recycler_menu);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
     }
+
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products").child("Kids");
+
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(ProductsRef, Products.class)
+                        .setQuery(reference.orderByChild("pname").startAt(SearchInput), Products.class)
                         .build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
@@ -65,15 +69,15 @@ public class PracticeWork extends AppCompatActivity {
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(PracticeWork.this, ProductDetails.class);
+                                Intent intent = new Intent(SearchProductsActivityKids.this, ProductDetailsKids.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
                             }
                         });
-
                     }
 
                     @NonNull
@@ -84,9 +88,8 @@ public class PracticeWork extends AppCompatActivity {
                         return holder;
                     }
                 };
-        recyclerView.setAdapter(adapter);
+
+        searchList.setAdapter(adapter);
         adapter.startListening();
     }
-
-
 }

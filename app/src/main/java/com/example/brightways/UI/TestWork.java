@@ -56,7 +56,7 @@ public class TestWork extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.searchmenu, menu);
 
-        MenuItem item = menu.findItem(R.id.search);
+        MenuItem item = menu.findItem(R.id.mapLocation);
 
         SearchView searchView = (SearchView) item.getActionView();
 

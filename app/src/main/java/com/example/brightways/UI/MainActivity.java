@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
-    Button joinNowButton, loginButton;
+    Button joinNowButton, loginButton, loginAsGuest;
     ProgressDialog loadingBar;
 
 
@@ -34,11 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
         joinNowButton = findViewById(R.id.main_join_now_btn);
         loginButton = findViewById(R.id.main_login_btn);
+        loginAsGuest = findViewById(R.id.login_guest_btn);
         loadingBar = new ProgressDialog(this);
 
 
         Paper.init(this);
 
+        loginAsGuest.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
 
         loginButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

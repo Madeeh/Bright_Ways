@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.brightways.R;
 import com.example.brightways.UI.Fragments.HomeFragment;
-import com.example.brightways.UI.Fragments.OrderFragment;
+import com.example.brightways.UI.Fragments.SearchFragment;
 import com.example.brightways.UI.Fragments.PhoneFragment;
 import com.example.brightways.UI.Fragments.ProfileFragment;
 import com.example.brightways.UI.Fragments.RateFragment;
@@ -85,10 +85,10 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.menu_rate:
                         selectedFragment = new RateFragment();
                         break;
-                    case R.id.menu_order:
-                        selectedFragment = new OrderFragment();
+                    case R.id.menu_search:
+                        selectedFragment = new SearchFragment();
                         break;
-                    case R.id.menu_phone:
+                    case R.id.menu_chat:
                         selectedFragment = new PhoneFragment();
                         break;
                 }

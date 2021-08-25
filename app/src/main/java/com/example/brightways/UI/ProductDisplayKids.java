@@ -10,56 +10,51 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.brightways.Models.Products;
 import com.example.brightways.R;
 import com.example.brightways.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class SearchProductsActivity extends AppCompatActivity {
+public class ProductDisplayKids extends AppCompatActivity {
 
-    Button SearchBtn;
-    EditText inputText;
-    RecyclerView searchList;
-    String SearchInput;
+    DatabaseReference ProductsRef;
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_products);
+        setContentView(R.layout.activity_product_display_kids);
 
 
-        inputText = findViewById(R.id.search_product_name);
-        SearchBtn = findViewById(R.id.search_btn);
-        searchList = findViewById(R.id.search_list);
-        searchList.setLayoutManager(new LinearLayoutManager(SearchProductsActivity.this));
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products").child("Kids");
 
-
-        SearchBtn.setOnClickListener(view -> {
-            SearchInput = inputText.getText().toString();
-
-            onStart();
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductDisplayKids.this, CartActivity.class);
+            startActivity(intent);
         });
-    }
 
+
+        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(reference.orderByChild("pname").startAt(SearchInput), Products.class)
+                        .setQuery(ProductsRef, Products.class)
                         .build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
@@ -68,17 +63,17 @@ public class SearchProductsActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "Rs");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
-
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(SearchProductsActivity.this, ProductDetails.class);
+                                Intent intent = new Intent(ProductDisplayKids.this, ProductDetailsWomen.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
                             }
                         });
+
                     }
 
                     @NonNull
@@ -89,8 +84,9 @@ public class SearchProductsActivity extends AppCompatActivity {
                         return holder;
                     }
                 };
-
-        searchList.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
+
+
 }

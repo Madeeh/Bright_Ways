@@ -53,7 +53,7 @@ public class HomeChatActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Data is Fetching...", Toast.LENGTH_SHORT).show();
 
-        DatabaseReference reference = database.getReference().child("user");
+        DatabaseReference reference = database.getReference().child("Admin").child("admin");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

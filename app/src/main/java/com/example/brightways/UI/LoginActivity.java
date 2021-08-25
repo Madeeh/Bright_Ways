@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         LoginButton = findViewById(R.id.login_btn);
         InputPassword = findViewById(R.id.login_password_input);
-        InputPhoneNumber = findViewById(R.id.login_phone_number_input);
+        InputPhoneNumber = findViewById(R.id.register_user_email);
         loadingBar = new ProgressDialog(this);
         ForgetPasswordLink = findViewById(R.id.forget_password_link);
 

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.brightways.Prevalent.Prevalent;
 import com.example.brightways.R;
 import com.example.brightways.UI.Setting;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -39,14 +40,22 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
 
-
         TextView userNameTextView = view.findViewById(R.id.user_profile_name);
+        TextView userEmailSecondTextView = view.findViewById(R.id.email_second);
+        TextInputLayout userNameUserTextView = view.findViewById(R.id.etUserNameLayout);
+        TextInputLayout userEmailTextView = view.findViewById(R.id.etEmailLayout);
+        TextInputLayout userPhoneNoTextView = view.findViewById(R.id.etPhoneLayout);
+        TextInputLayout userPasswordTextView = view.findViewById(R.id.passwordLayout);
         CircleImageView profileImageView = view.findViewById(R.id.user_profile_image);
+
         userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+        userEmailSecondTextView.setText(Prevalent.currentOnlineUser.getEmail());
+        userNameUserTextView.getEditText().setText(Prevalent.currentOnlineUser.getName());
+        userEmailTextView.getEditText().setText(Prevalent.currentOnlineUser.getEmail());
+        userPhoneNoTextView.getEditText().setText(Prevalent.currentOnlineUser.getPhone());
+        userPasswordTextView.getEditText().setText(Prevalent.currentOnlineUser.getPassword());
 
         Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
-
-
         return view;
     }
 }

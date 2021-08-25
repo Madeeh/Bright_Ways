@@ -2,21 +2,19 @@ package com.example.brightways.UI.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.brightways.Adapters.CardAdapter;
 import com.example.brightways.Models.Products;
 import com.example.brightways.R;
 import com.example.brightways.UI.CartActivity;
-import com.example.brightways.UI.ProductDetails;
+import com.example.brightways.UI.ProductDetailsKids;
 import com.example.brightways.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -39,18 +37,18 @@ public class KidsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_practice_work, container, false);
+        View view = inflater.inflate(R.layout.fragment_kids, container, false);
 
 
-        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products").child("Kids");
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_kids);
         fab.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), CartActivity.class);
             startActivity(intent);
         });
 
 
-        recyclerView = view.findViewById(R.id.recycler_menu);
+        recyclerView = view.findViewById(R.id.recycler_menu_kids);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -72,12 +70,12 @@ public class KidsFragment extends Fragment {
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "Rs");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(getContext(), ProductDetails.class);
+                                Intent intent = new Intent(getContext(), ProductDetailsKids.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
                             }

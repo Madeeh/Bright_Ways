@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.SearchProductsActivity">
+    tools:context=".UI.SearchProductsActivityKids">
 
     <RelativeLayout
-        android:id="@+id/r5"
+        android:id="@+id/r5_kids"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
@@ -15,7 +15,7 @@
         android:background="@color/colorPrimaryDark">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/search_product_name"
+            android:id="@+id/search_product_name_kids"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -28,11 +28,11 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/search_btn"
+            android:id="@+id/search_btn_kids"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toRightOf="@+id/search_product_name"
+            android:layout_toRightOf="@+id/search_product_name_kids"
             android:background="@color/colorPrimaryDark"
             android:padding="9dp"
             android:text="Search"
@@ -44,9 +44,9 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_list"
+        android:id="@+id/search_list_kids"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/r5" />
+        android:layout_below="@+id/r5_kids" />
 
 </RelativeLayout>

@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.brightways.UI.Fragments.KidsFragment;
 import com.example.brightways.UI.Fragments.MenFragment;
-import com.example.brightways.UI.Fragments.OrderFragment;
 import com.example.brightways.UI.Fragments.OthersFragment;
 import com.example.brightways.UI.Fragments.WomenFragment;
 

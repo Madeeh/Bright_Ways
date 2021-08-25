@@ -10,21 +10,18 @@ import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.brightways.Chat.LoginChatActivity;
 import com.example.brightways.R;
-import com.example.brightways.UI.PracticeWork;
-import com.example.brightways.UI.SearchProductsActivity;
+import com.example.brightways.UI.MapsActivity;
+import com.example.brightways.UI.Reminder.MainPage;
 import com.example.brightways.UI.SelectClothes;
-import com.example.brightways.UI.TestWork;
 
 
 public class HomeFragment extends Fragment {
     public HomeFragment() {
-
     }
 
     ImageButton button;
-    Button orderButton, buttonNew, buttonSearch, BtnChat;
+    Button Reminder, mapLocation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,32 +29,19 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
-        BtnChat = view.findViewById(R.id.buttonChat);
-        BtnChat.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), LoginChatActivity.class);
+        mapLocation = view.findViewById(R.id.mapLocation);
+        mapLocation.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), MapsActivity.class);
             startActivity(intent);
         });
 
 
-        buttonSearch = view.findViewById(R.id.buttonSearch);
-        buttonSearch.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), SearchProductsActivity.class);
-            startActivity(intent);
-        });
-
-        buttonNew = view.findViewById(R.id.buttonNew);
-        buttonNew.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), PracticeWork.class);
-            startActivity(intent);
-        });
-
-        orderButton = view.findViewById(R.id.orderBtn);
-        orderButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), TestWork.class);
-            startActivity(intent);
-        });
-
+        Reminder = view.findViewById(R.id.button2);
+        Reminder.setOnClickListener(v -> {
+                    Intent intent = new Intent(getContext(), MainPage.class);
+                    startActivity(intent);
+                }
+        );
 
         button = view.findViewById(R.id.washBtn);
         button.setOnClickListener(v -> {

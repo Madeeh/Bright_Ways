@@ -15,11 +15,11 @@
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"
         android:title="Rate" />
     <item
-        android:id="@+id/menu_order"
-        android:icon="@drawable/ic_baseline_reorder"
-        android:title="Order" />
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search" />
     <item
-        android:id="@+id/menu_phone"
-        android:icon="@drawable/ic_baseline_contact_phone"
-        android:title="Phone" />
+        android:id="@+id/menu_chat"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="Chat" />
 </menu>

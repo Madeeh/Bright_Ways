@@ -1,5 +1,8 @@
 package com.example.brightways.UI;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,9 +10,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.brightways.Models.Products;
@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class ProductDetails extends AppCompatActivity {
+public class ProductDetailsOthers extends AppCompatActivity {
     Button addToCartButton;
     ImageView productImage;
     ImageButton button;
@@ -40,7 +40,7 @@ public class ProductDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details);
+        setContentView(R.layout.activity_product_details_others);
 
 
         button = findViewById(R.id.btnBack);
@@ -61,7 +61,7 @@ public class ProductDetails extends AppCompatActivity {
 
         addToCartButton.setOnClickListener(view -> {
             if (state.equals("Order Placed") || state.equals("Order Shipped")) {
-                Toast.makeText(ProductDetails.this, "you can add purchase more products, once your order is shipped or confirmed.", Toast.LENGTH_LONG).show();
+                Toast.makeText(ProductDetailsOthers.this, "you can add purchase more products, once your order is shipped or confirmed.", Toast.LENGTH_LONG).show();
             } else {
                 addingToCartList();
             }
@@ -111,9 +111,9 @@ public class ProductDetails extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(ProductDetails.this, "Added to Cart List.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(ProductDetailsOthers.this, "Added to Cart List.", Toast.LENGTH_SHORT).show();
 
-                                                Intent intent = new Intent(ProductDetails.this, PracticeWork.class);
+                                                Intent intent = new Intent(ProductDetailsOthers.this, CartActivity.class);
                                                 startActivity(intent);
                                             }
                                         }
@@ -125,7 +125,7 @@ public class ProductDetails extends AppCompatActivity {
 
 
     private void getProductDetails(String productID) {
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child("Others");
 
         productsRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override

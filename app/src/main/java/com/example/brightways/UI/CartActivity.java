@@ -57,7 +57,7 @@ public class CartActivity extends AppCompatActivity {
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txtTotalAmount.setText("Total Price = $" + String.valueOf(overTotalPrice));
+
 
                 Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
                 intent.putExtra("Total Price", String.valueOf(overTotalPrice));
@@ -89,11 +89,12 @@ public class CartActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model) {
                 holder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
-                holder.txtProductPrice.setText("Price " + model.getPrice() + "$");
+                holder.txtProductPrice.setText("Price " + model.getPrice() + "Rs");
                 holder.txtProductName.setText(model.getPname());
 
                 int oneTyprProductTPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
                 overTotalPrice = overTotalPrice + oneTyprProductTPrice;
+                txtTotalAmount.setText("Total Price = Rs" + String.valueOf(overTotalPrice));
 
                 holder.itemView.setOnClickListener(view -> {
                     CharSequence options1[] = new CharSequence[]
@@ -108,7 +109,7 @@ public class CartActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             if (i == 0) {
-                                Intent intent = new Intent(CartActivity.this, ProductDetails.class);
+                                Intent intent = new Intent(CartActivity.this, ProductDetailsWomen.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
                             }
